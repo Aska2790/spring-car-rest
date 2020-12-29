@@ -1,14 +1,14 @@
 package com.aska.development.carrestapi.controllers;
 
-import com.aska.development.carrestapi.services.dto.Car;
+import com.aska.development.carrestapi.entities.Car;
 import com.aska.development.carrestapi.services.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("cars")
+@RequestMapping("/")
 public class CarController {
 
     //region Fields
@@ -19,6 +19,7 @@ public class CarController {
 
     //region Constructors
 
+    @Autowired
     public CarController(CarService service) {
         mService = service;
     }
@@ -28,11 +29,8 @@ public class CarController {
     //region Methods
 
     @GetMapping
-    public List<Car> select(@RequestParam Map<String, String> params) {
-        if (params.isEmpty()) {
-            return mService.findAll();
-        }
-        return mService.findAll(params);
+    public List<Car> select(@RequestParam(required = false) String filter) {
+        return mService.findAll(filter);
     }
 
     @GetMapping("{id}")
@@ -42,13 +40,13 @@ public class CarController {
 
     @PostMapping
     public Car create(@RequestBody Car car) {
-        mService.insert(car);
+        mService.save(car);
         return car;
     }
 
     @PutMapping
     public Car update(@RequestBody Car car) {
-        mService.update(car);
+        mService.save(car);
         return car;
     }
 

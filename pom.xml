@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repositories -->
 	</parent>
 	<groupId>com.aska.development</groupId>
-	<artifactId>carEntity-rest-api</artifactId>
+	<artifactId>car-rest-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>carEntity-rest-api</name>
+	<name>car-rest-api</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -50,6 +50,12 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.16</version>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 
 	<build>

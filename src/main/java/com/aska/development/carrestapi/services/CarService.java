@@ -1,9 +1,8 @@
 package com.aska.development.carrestapi.services;
 
-import com.aska.development.carrestapi.services.dto.Car;
+import com.aska.development.carrestapi.entities.Car;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CarService {
 
@@ -11,11 +10,10 @@ public interface CarService {
 
     List<Car> findAll();
 
-    List<Car> findAll(Map<String, String> params);
+    List<Car> findAll(String filter);
 
     void delete(Long id);
 
-    void update(Car car);
+    void save(Car car);
 
-    void insert(Car car);
 }

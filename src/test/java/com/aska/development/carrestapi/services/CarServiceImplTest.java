@@ -1,7 +1,7 @@
 package com.aska.development.carrestapi.services;
 
+import com.aska.development.carrestapi.entities.Car;
 import com.aska.development.carrestapi.exceptions.NotFoundException;
-import com.aska.development.carrestapi.services.dto.Car;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Date;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -47,15 +46,15 @@ public class CarServiceImplTest {
 
     @Test
     public void ifInsertACarIsTheIdentifierReturnedCorrectly() {
-        Long expectedCarId =  5L;
-        Car car = new Car()
-                .setManufacture("Manufacture")
-                .setModel("Model")
-                .setType("Small")
-                .setCountry("USA")
-                .setCreateDate(new Date());
+        Long expectedCarId = 5L;
+        Car car = new Car();
+        car.setManufacture("Manufacture");
+        car.setModel("Model");
+        car.setType("Small");
+        car.setCountry("USA");
+        car.setCreateDate(new Date());
 
-        mCarService.insert(car);
+        mCarService.save(car);
 
         assertThat(car.getId()).isEqualTo(expectedCarId);
     }
@@ -63,15 +62,15 @@ public class CarServiceImplTest {
     @Test
     public void whenUpdatingAreAllFieldsSet() {
         long id = 3L;
-        Car expectedCar = new Car()
-                .setId(id)
-                .setManufacture("Manufacture")
-                .setModel("Model")
-                .setType("Small")
-                .setCountry("USA")
-                .setCreateDate(new Date());
+        Car expectedCar = new Car();
+        expectedCar.setId(id);
+        expectedCar.setManufacture("Manufacture");
+        expectedCar.setModel("Model");
+        expectedCar.setType("Small");
+        expectedCar.setCountry("USA");
+        expectedCar.setCreateDate(new Date());
 
-        mCarService.update(expectedCar);
+        mCarService.save(expectedCar);
 
         Car actualCar = mCarService.findById(id);
         assertThat(actualCar.getModel()).isEqualTo(expectedCar.getModel());
@@ -89,15 +88,15 @@ public class CarServiceImplTest {
     @Test(expected = NotFoundException.class)
     public void ifUpdatingNonExistentCarWillExceptionBeThrow() {
         long id = 25L;
-        Car expectedCar = new Car()
-                .setId(id)
-                .setManufacture("Manufacture")
-                .setModel("Model")
-                .setType("Small")
-                .setCountry("USA")
-                .setCreateDate(new Date());
+        Car expectedCar = new Car();
+        expectedCar.setId(id);
+        expectedCar.setManufacture("Manufacture");
+        expectedCar.setModel("Model");
+        expectedCar.setType("Small");
+        expectedCar.setCountry("USA");
+        expectedCar.setCreateDate(new Date());
 
-        mCarService.update(expectedCar);
+        mCarService.save(expectedCar);
 
     }
 
